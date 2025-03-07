@@ -1,3 +1,3 @@
 # Pessoa
 
-Creates an identity. Crate named from the Portuguese word for 'person'.
+Creates an identity. The crate is named after the Portuguese word for "person."
