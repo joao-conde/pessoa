@@ -1,4 +1,7 @@
-use crate::{fake, faking::{ Fake, FirstName, LastName, Locale, PhoneNumber}};
+use crate::{
+    fake,
+    faking::{Fake, FirstName, LastName, Locale, PhoneNumber},
+};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Identity {

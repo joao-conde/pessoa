@@ -1,7 +1,4 @@
 mod faking;
 mod identity;
 
-pub use crate::{
-    identity::Identity,
-    faking::Locale,
-} ;
+pub use crate::{faking::Locale, identity::Identity};
