@@ -1,14 +1,29 @@
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Identity {
-    first_name: String,
-    last_name: String,
+mod fake;
+
+use fake::{Fake, FirstName, LastName, PhoneNumber};
+
+#[derive(Debug, Clone)]
+pub enum Locale {
+    EN,
+    PTPT,
+    PTBR,
+    FRFR,
+    JAJP,
 }
 
-pub fn create_identity() -> Identity {
-    let first_name = fakeit::name::first();
-    let last_name = fakeit::name::last();
-    Identity {
-        first_name,
-        last_name,
+#[derive(Debug, Clone)]
+pub struct Identity {
+    pub first_name: String,
+    pub last_name: String,
+    pub phone: String,
+}
+
+impl Identity {
+    pub fn new(locale: Locale) -> Self {
+        Self {
+            first_name: fake!(locale, FirstName),
+            last_name: fake!(locale, LastName),
+            phone: fake!(locale, PhoneNumber),
+        }
     }
 }
