@@ -1,2 +1,3 @@
-# pessoa
-Creates an identity (named from the Portuguese word for 'person')
+# Pessoa
+
+Creates an identity. Crate named from the Portuguese word for 'person'.
