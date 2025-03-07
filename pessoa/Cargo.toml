@@ -8,4 +8,4 @@ clap = { version = "4.5", default-features = false, features = [
     "std",
     "derive",
 ] }
-fakeit = { version = "1.3", default-features = false }
+fake_rs = { package = "fake", version = "4.0", default-features = false }
