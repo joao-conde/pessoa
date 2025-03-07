@@ -3,9 +3,18 @@ pub use fake_rs::{
     faker::{name::raw::*, phone_number::raw::*},
 };
 
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum Locale {
+    EN,
+    PTPT,
+    PTBR,
+    FRFR,
+    JAJP,
+}
+
 #[macro_export]
 macro_rules! fake {
-    ($locale:expr, $faker:ident) => {
+    ($faker:ident, $locale:expr) => {
         match $locale {
             Locale::EN => $faker(::fake_rs::locales::EN).fake(),
             Locale::PTPT => $faker(::fake_rs::locales::PT_PT).fake(),
