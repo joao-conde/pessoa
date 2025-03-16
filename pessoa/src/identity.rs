@@ -38,7 +38,7 @@ impl IdentityBuilder {
         self
     }
 
-    pub fn with_addresses(mut self, addresses: Vec<Address>) -> Self {
+    pub fn address_one_of(mut self, addresses: Vec<Address>) -> Self {
         self.addresses = Some(addresses);
         self
     }

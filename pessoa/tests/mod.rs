@@ -38,7 +38,7 @@ fn build_identity_with_addresses() {
         },
     ];
     let identity = Identity::builder()
-        .with_addresses(addresses.clone())
+        .address_one_of(addresses.clone())
         .build();
     assert!(addresses.contains(&identity.address));
 }
