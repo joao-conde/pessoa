@@ -44,6 +44,9 @@ impl IdentityBuilder {
     }
 
     pub fn build(&self) -> Identity {
+        let first_name = fake!(FirstName, self.locale);
+        let last_name = fake!(LastName, self.locale);
+        let phone = fake!(PhoneNumber, self.locale);
         let address = self
             .addresses
             .as_ref()
@@ -55,9 +58,9 @@ impl IdentityBuilder {
             });
 
         Identity {
-            first_name: fake!(FirstName, self.locale),
-            last_name: fake!(LastName, self.locale),
-            phone: fake!(PhoneNumber, self.locale),
+            first_name,
+            last_name,
+            phone,
             address,
         }
     }
