@@ -1,6 +1,8 @@
 pub use fake_rs::{
     Fake,
-    faker::{address::raw::*, internet::raw::*, name::raw::*, phone_number::raw::*},
+    faker::{
+        address::raw::*, company::raw::*, internet::raw::*, name::raw::*, phone_number::raw::*,
+    },
 };
 
 #[derive(Debug, Clone, PartialEq, Eq)]

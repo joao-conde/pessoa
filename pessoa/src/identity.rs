@@ -9,6 +9,7 @@ pub struct Identity {
     pub address: Address,
     pub username: String,
     pub password: String,
+    pub profession: Profession,
 }
 
 impl Identity {
@@ -23,6 +24,13 @@ impl Identity {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Address {
     pub street: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Profession {
+    pub company: String,
+    pub industry: String,
+    pub role: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -65,6 +73,12 @@ impl IdentityBuilder {
                 Address { street }
             });
 
+        let profession = Profession {
+            company: fake!(CompanyName, self.locale),
+            industry: fake!(Industry, self.locale),
+            role: fake!(Profession, self.locale),
+        };
+
         Identity {
             first_name,
             last_name,
@@ -72,6 +86,7 @@ impl IdentityBuilder {
             address,
             username,
             password,
+            profession,
         }
     }
 }
