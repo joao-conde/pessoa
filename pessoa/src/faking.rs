@@ -5,22 +5,18 @@ pub use fake_rs::{
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Locale {
-    EN,
-    PTPT,
-    PTBR,
-    FRFR,
-    JAJP,
+    EnUs,
+    PtPt,
+    PtBr,
 }
 
 #[macro_export]
 macro_rules! fake {
-    ($faker:ident, $locale:expr) => {
+    ($faker:expr, $locale:expr) => {
         match $locale {
-            Locale::EN => $faker(::fake_rs::locales::EN).fake(),
-            Locale::PTPT => $faker(::fake_rs::locales::PT_PT).fake(),
-            Locale::PTBR => $faker(::fake_rs::locales::PT_BR).fake(),
-            Locale::FRFR => $faker(::fake_rs::locales::FR_FR).fake(),
-            Locale::JAJP => $faker(::fake_rs::locales::JA_JP).fake(),
+            Locale::EnUs => $faker(::fake_rs::locales::EN).fake(),
+            Locale::PtPt => $faker(::fake_rs::locales::PT_PT).fake(),
+            Locale::PtBr => $faker(::fake_rs::locales::PT_BR).fake(),
         }
     };
 }

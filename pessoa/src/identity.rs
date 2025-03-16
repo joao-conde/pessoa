@@ -10,18 +10,29 @@ pub struct Identity {
     pub phone: String,
 }
 
-impl Default for Identity {
-    fn default() -> Self {
-        Self::new(Locale::EN)
+impl Identity {
+    pub fn builder() -> IdentityBuilder {
+        IdentityBuilder {
+            locale: Locale::EnUs,
+        }
     }
 }
 
-impl Identity {
-    pub fn new(locale: Locale) -> Self {
-        Self {
-            first_name: fake!(FirstName, locale),
-            last_name: fake!(LastName, locale),
-            phone: fake!(PhoneNumber, locale),
+pub struct IdentityBuilder {
+    locale: Locale,
+}
+
+impl IdentityBuilder {
+    pub fn with_locale(mut self, locale: Locale) -> Self {
+        self.locale = locale;
+        self
+    }
+
+    pub fn build(&self) -> Identity {
+        Identity {
+            first_name: fake!(FirstName, self.locale),
+            last_name: fake!(LastName, self.locale),
+            phone: fake!(PhoneNumber, self.locale),
         }
     }
 }
