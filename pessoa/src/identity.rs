@@ -1,7 +1,4 @@
-use crate::{
-    fake,
-    faking::{Fake, FirstName, LastName, Locale, PhoneNumber, StreetName},
-};
+use crate::{fake, faking::*};
 use rand::seq::IndexedRandom;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -10,6 +7,8 @@ pub struct Identity {
     pub last_name: String,
     pub phone: String,
     pub address: Address,
+    pub username: String,
+    pub password: String,
 }
 
 impl Identity {
@@ -33,6 +32,8 @@ pub struct IdentityBuilder {
 }
 
 impl IdentityBuilder {
+    const PASSWORD_LENGTH: usize = 25;
+
     pub fn with_locale(mut self, locale: Locale) -> Self {
         self.locale = locale;
         self
@@ -47,6 +48,13 @@ impl IdentityBuilder {
         let first_name = fake!(FirstName, self.locale);
         let last_name = fake!(LastName, self.locale);
         let phone = fake!(PhoneNumber, self.locale);
+        let username = fake!(Username, self.locale);
+        let password = fake!(
+            Password,
+            self.locale,
+            Self::PASSWORD_LENGTH..Self::PASSWORD_LENGTH + 1
+        );
+
         let address = self
             .addresses
             .as_ref()
@@ -62,6 +70,8 @@ impl IdentityBuilder {
             last_name,
             phone,
             address,
+            username,
+            password,
         }
     }
 }

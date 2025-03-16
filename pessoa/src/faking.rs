@@ -1,6 +1,6 @@
 pub use fake_rs::{
     Fake,
-    faker::{address::raw::*, name::raw::*, phone_number::raw::*},
+    faker::{address::raw::*, internet::raw::*, name::raw::*, phone_number::raw::*},
 };
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -12,11 +12,11 @@ pub enum Locale {
 
 #[macro_export]
 macro_rules! fake {
-    ($faker:expr, $locale:expr) => {
+    ($faker:expr, $locale:expr $(, $opt:expr)*) => {
         match $locale {
-            Locale::EnUs => $faker(::fake_rs::locales::EN).fake(),
-            Locale::PtPt => $faker(::fake_rs::locales::PT_PT).fake(),
-            Locale::PtBr => $faker(::fake_rs::locales::PT_BR).fake(),
+            Locale::EnUs => $faker(::fake_rs::locales::EN, $($opt),*).fake(),
+            Locale::PtPt => $faker(::fake_rs::locales::PT_PT, $($opt),*).fake(),
+            Locale::PtBr => $faker(::fake_rs::locales::PT_BR, $($opt),*).fake(),
         }
     };
 }
