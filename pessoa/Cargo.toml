@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 fake_rs = { package = "fake", version = "4.0", default-features = false }
+rand = { version = "0.9.0", default-features = false }
