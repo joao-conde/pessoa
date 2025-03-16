@@ -1,7 +1,8 @@
 pub use fake_rs::{
     Fake,
     faker::{
-        address::raw::*, company::raw::*, internet::raw::*, name::raw::*, phone_number::raw::*,
+        address::raw::*, company::raw::*, creditcard::raw::CreditCardNumber, internet::raw::*,
+        name::raw::*, phone_number::raw::*,
     },
 };
 

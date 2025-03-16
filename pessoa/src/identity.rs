@@ -9,7 +9,8 @@ pub struct Identity {
     pub address: Address,
     pub username: String,
     pub password: String,
-    pub profession: Profession,
+    pub job: Job,
+    pub credit_card: String,
 }
 
 impl Identity {
@@ -27,7 +28,7 @@ pub struct Address {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Profession {
+pub struct Job {
     pub company: String,
     pub industry: String,
     pub role: String,
@@ -63,6 +64,14 @@ impl IdentityBuilder {
             Self::PASSWORD_LENGTH..Self::PASSWORD_LENGTH + 1
         );
 
+        let job = Job {
+            company: fake!(CompanyName, self.locale),
+            industry: fake!(Industry, self.locale),
+            role: fake!(Profession, self.locale),
+        };
+
+        let credit_card = fake!(CreditCardNumber, self.locale);
+
         let address = self
             .addresses
             .as_ref()
@@ -73,12 +82,6 @@ impl IdentityBuilder {
                 Address { street }
             });
 
-        let profession = Profession {
-            company: fake!(CompanyName, self.locale),
-            industry: fake!(Industry, self.locale),
-            role: fake!(Profession, self.locale),
-        };
-
         Identity {
             first_name,
             last_name,
@@ -86,7 +89,8 @@ impl IdentityBuilder {
             address,
             username,
             password,
-            profession,
+            job,
+            credit_card,
         }
     }
 }
