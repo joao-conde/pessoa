@@ -23,7 +23,7 @@ impl Identity {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Address {
-    street: String,
+    pub street: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
