@@ -5,8 +5,9 @@ use rand::seq::IndexedRandom;
 pub struct Identity {
     pub first_name: String,
     pub last_name: String,
-    pub phone: String,
     pub address: Address,
+    pub phone: String,
+    pub email: String,
     pub username: String,
     pub password: String,
     pub job: Job,
@@ -18,6 +19,8 @@ impl Identity {
         IdentityBuilder {
             locale: Locale::EnUs,
             addresses: None,
+            phones: None,
+            emails: None,
         }
     }
 }
@@ -45,6 +48,8 @@ pub struct Job {
 pub struct IdentityBuilder {
     locale: Locale,
     addresses: Option<Vec<Address>>,
+    phones: Option<Vec<String>>,
+    emails: Option<Vec<String>>,
 }
 
 impl IdentityBuilder {
@@ -55,15 +60,24 @@ impl IdentityBuilder {
         self
     }
 
-    pub fn address_one_of(mut self, addresses: Vec<Address>) -> Self {
+    pub fn address_from(mut self, addresses: Vec<Address>) -> Self {
         self.addresses = Some(addresses);
+        self
+    }
+
+    pub fn phone_from(mut self, phones: Vec<String>) -> Self {
+        self.phones = Some(phones);
+        self
+    }
+
+    pub fn email_from(mut self, emails: Vec<String>) -> Self {
+        self.emails = Some(emails);
         self
     }
 
     pub fn build(&self) -> Identity {
         let first_name = fake!(FirstName, self.locale);
         let last_name = fake!(LastName, self.locale);
-        let phone = fake!(PhoneNumber, self.locale);
         let username = fake!(Username, self.locale);
         let password = fake!(
             Password,
@@ -105,11 +119,26 @@ impl IdentityBuilder {
                 }
             });
 
+        let phone = self
+            .phones
+            .as_ref()
+            .and_then(|phones| phones.choose(&mut rand::rng()))
+            .cloned()
+            .unwrap_or_else(|| fake!(CellNumber, self.locale));
+
+        let email = self
+            .emails
+            .as_ref()
+            .and_then(|emails| emails.choose(&mut rand::rng()))
+            .cloned()
+            .unwrap_or_else(|| fake!(FreeEmail, self.locale));
+
         Identity {
             first_name,
             last_name,
-            phone,
             address,
+            phone,
+            email,
             username,
             password,
             job,

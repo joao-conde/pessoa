@@ -3,7 +3,7 @@ use pessoa::{Address, Identity, Locale};
 
 #[test]
 fn build_identity_with_defaults() {
-    let identity = Identity::builder().build();
+    let identity = Identity::builder().with_locale(Locale::PtPt).build();
     assert!(EN::NAME_FIRST_NAME.contains(&identity.first_name.as_str()));
 }
 
@@ -58,26 +58,28 @@ fn build_identity_with_addresses() {
             house_number: Some("2674".into()),
         },
     ];
-    let identity = Identity::builder()
-        .address_one_of(addresses.clone())
-        .build();
+    let identity = Identity::builder().address_from(addresses.clone()).build();
     assert!(addresses.contains(&identity.address));
 }
 
 #[test]
-fn build_identity_with_one_address() {
-    let addresses = vec![Address {
-        country: "Portugal".into(),
-        country_code: "PT".into(),
-        state: Some("Porto".into()),
-        state_code: None,
-        city: "Porto".into(),
-        street: "Rua Sá da Bandeira".into(),
-        postal_code: "4000-437".into(),
-        house_number: Some("605".into()),
-    }];
-    let identity = Identity::builder()
-        .address_one_of(addresses.clone())
-        .build();
-    assert_eq!(identity.address, addresses[0]);
+fn build_identity_with_emails() {
+    let emails = vec![
+        "pessoa@gmail.com".into(),
+        "pessoa@hotmail.com".into(),
+        "johndoe@gmail.com".into(),
+    ];
+    let identity = Identity::builder().email_from(emails.clone()).build();
+    assert!(emails.contains(&identity.email));
+}
+
+#[test]
+fn build_identity_with_phones() {
+    let phones = vec![
+        "919999999".into(),
+        "+351 999 999 999".into(),
+        "964075554".into(),
+    ];
+    let identity = Identity::builder().phone_from(phones.clone()).build();
+    assert!(phones.contains(&identity.phone));
 }
