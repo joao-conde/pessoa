@@ -24,7 +24,14 @@ impl Identity {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Address {
+    pub country: String,
+    pub country_code: String,
+    pub state: Option<String>,
+    pub state_code: Option<String>,
+    pub city: String,
     pub street: String,
+    pub postal_code: String,
+    pub house_number: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -78,8 +85,24 @@ impl IdentityBuilder {
             .and_then(|addresses| addresses.choose(&mut rand::rng()))
             .cloned()
             .unwrap_or_else(|| {
+                let country = fake!(CountryName, self.locale);
+                let country_code = fake!(CountryCode, self.locale);
+                let state = fake!(StateName, self.locale);
+                let state_code = fake!(StateAbbr, self.locale);
+                let city = fake!(CityName, self.locale);
                 let street = fake!(StreetName, self.locale);
-                Address { street }
+                let zip_code = fake!(ZipCode, self.locale);
+                let house_number = fake!(BuildingNumber, self.locale);
+                Address {
+                    country,
+                    country_code,
+                    state,
+                    state_code,
+                    city,
+                    street,
+                    postal_code: zip_code,
+                    house_number,
+                }
             });
 
         Identity {
