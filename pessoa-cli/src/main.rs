@@ -1,5 +1,5 @@
 use clap::Parser;
-use pessoa::Identity;
+use pessoa::{Identity, Locale};
 use std::{fs::File, io::Write, path::PathBuf};
 
 #[derive(Debug, Clone, Parser)]
@@ -8,6 +8,10 @@ struct Args {
     /// Output destination (stdout by default)
     #[arg(short, long, value_name = "FILE")]
     out: Option<PathBuf>,
+
+    /// Locale used for identity data (e.g. en_us)
+    #[arg(short, long)]
+    locale: Locale,
 }
 
 fn main() {
