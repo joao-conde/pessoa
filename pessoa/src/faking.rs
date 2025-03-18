@@ -5,8 +5,10 @@ pub use fake_rs::{
         name::raw::*, phone_number::raw::*,
     },
 };
+use strum::EnumString;
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, EnumString)]
+#[strum(serialize_all = "snake_case")]
 pub enum Locale {
     EnUs,
     PtPt,
