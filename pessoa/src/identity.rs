@@ -1,7 +1,8 @@
 use crate::{fake, faking::*};
 use rand::seq::IndexedRandom;
+use serde::Serialize;
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct Identity {
     pub first_name: String,
     pub last_name: String,
@@ -25,7 +26,7 @@ impl Identity {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct Address {
     pub country: String,
     pub country_code: String,
@@ -37,7 +38,7 @@ pub struct Address {
     pub house_number: Option<String>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct Job {
     pub company: String,
     pub industry: String,
