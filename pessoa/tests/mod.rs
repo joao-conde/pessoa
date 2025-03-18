@@ -3,7 +3,7 @@ use pessoa::{Address, Identity, Locale};
 
 #[test]
 fn build_identity_with_defaults() {
-    let identity = Identity::builder().with_locale(Locale::PtPt).build();
+    let identity = Identity::builder().build();
     assert!(EN::NAME_FIRST_NAME.contains(&identity.first_name.as_str()));
 }
 
