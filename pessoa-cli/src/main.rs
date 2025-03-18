@@ -11,13 +11,14 @@ struct Args {
 
     /// Locale used for identity data (e.g. en_us)
     #[arg(short, long)]
-    locale: Locale,
+    locale: Option<Locale>,
 }
 
 fn main() {
     let args = Args::parse();
 
-    let identity = Identity::builder().build();
+    let locale = args.locale.unwrap_or(Locale::EnUs);
+    let identity = Identity::builder().with_locale(locale).build();
 
     let json = serde_json::to_string_pretty(&identity).unwrap();
     if let Some(path) = args.out {
