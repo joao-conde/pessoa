@@ -1,0 +1,19 @@
+name: Lib Workflow
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - run: cargo fmt --all --check -- --config imports_granularity=Crate,group_imports=One
+        working-directory: pessoa
+
+      - run: cargo clippy --all --all-features -- -D warnings
+        working-directory: pessoa
+      
+      - run: cargo test
+        working-directory: pessoa
+      
+      - run: cargo install cargo-sort && cargo sort --check
+        working-directory: pessoa
