@@ -15,16 +15,64 @@ pub struct Identity {
 }
 
 impl Identity {
-    pub fn builder() -> IdentityBuilder {
-        IdentityBuilder::default()
+    const PASSWORD_LENGTH: usize = 25;
+
+    pub fn new() -> Identity {
+        Self::with_locale(Locale::EnUs)
+    }
+
+    pub fn with_locale(locale: Locale) -> Identity {
+        let first_name = fake!(FirstName, locale);
+        let last_name = fake!(LastName, locale);
+        let country = fake!(CountryName, locale);
+        let country_code = fake!(CountryCode, locale);
+        let state = fake!(StateName, locale);
+        let state_code = fake!(StateAbbr, locale);
+        let city = fake!(CityName, locale);
+        let street = fake!(StreetName, locale);
+        let zip_code = fake!(ZipCode, locale);
+        let house_number = fake!(BuildingNumber, locale);
+        let address = Address {
+            country,
+            country_code,
+            state,
+            state_code,
+            city,
+            street,
+            postal_code: zip_code,
+            house_number,
+        };
+        let phone = fake!(CellNumber, locale);
+        let email = fake!(FreeEmail, locale);
+        let username = fake!(Username, locale);
+        let password = fake!(
+            Password,
+            locale,
+            Self::PASSWORD_LENGTH..Self::PASSWORD_LENGTH + 1
+        );
+        let job = Job {
+            company: fake!(CompanyName, locale),
+            industry: fake!(Industry, locale),
+            role: fake!(Profession, locale),
+        };
+        let credit_card = fake!(CreditCardNumber, locale);
+        Identity {
+            first_name,
+            last_name,
+            address,
+            phone,
+            email,
+            username,
+            password,
+            job,
+            credit_card,
+        }
     }
 }
 
-impl Default for IdentityBuilder {
+impl Default for Identity {
     fn default() -> Self {
-        Self {
-            locale: Locale::EnUs,
-        }
+        Self::new()
     }
 }
 
@@ -45,66 +93,4 @@ pub struct Job {
     pub company: String,
     pub industry: String,
     pub role: String,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct IdentityBuilder {
-    locale: Locale,
-}
-
-impl IdentityBuilder {
-    const PASSWORD_LENGTH: usize = 25;
-
-    pub fn build(&self) -> Identity {
-        let first_name = fake!(FirstName, self.locale);
-        let last_name = fake!(LastName, self.locale);
-        let country = fake!(CountryName, self.locale);
-        let country_code = fake!(CountryCode, self.locale);
-        let state = fake!(StateName, self.locale);
-        let state_code = fake!(StateAbbr, self.locale);
-        let city = fake!(CityName, self.locale);
-        let street = fake!(StreetName, self.locale);
-        let zip_code = fake!(ZipCode, self.locale);
-        let house_number = fake!(BuildingNumber, self.locale);
-        let address = Address {
-            country,
-            country_code,
-            state,
-            state_code,
-            city,
-            street,
-            postal_code: zip_code,
-            house_number,
-        };
-        let phone = fake!(CellNumber, self.locale);
-        let email = fake!(FreeEmail, self.locale);
-        let username = fake!(Username, self.locale);
-        let password = fake!(
-            Password,
-            self.locale,
-            Self::PASSWORD_LENGTH..Self::PASSWORD_LENGTH + 1
-        );
-        let job = Job {
-            company: fake!(CompanyName, self.locale),
-            industry: fake!(Industry, self.locale),
-            role: fake!(Profession, self.locale),
-        };
-        let credit_card = fake!(CreditCardNumber, self.locale);
-        Identity {
-            first_name,
-            last_name,
-            address,
-            phone,
-            email,
-            username,
-            password,
-            job,
-            credit_card,
-        }
-    }
-
-    pub fn with_locale(mut self, locale: Locale) -> Self {
-        self.locale = locale;
-        self
-    }
 }

@@ -18,7 +18,7 @@ fn main() {
     let args = Args::parse();
 
     let locale = args.locale.unwrap_or(Locale::EnUs);
-    let identity = Identity::builder().with_locale(locale).build();
+    let identity = Identity::with_locale(locale);
 
     let json = serde_json::to_string_pretty(&identity).unwrap();
     if let Some(path) = args.out {
