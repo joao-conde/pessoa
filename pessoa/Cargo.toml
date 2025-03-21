@@ -2,6 +2,12 @@
 name = "pessoa"
 version = "0.1.0"
 edition = "2024"
+authors = ["João Conde <joaodiasconde@gmail.com>"]
+description = "Library for generating fake identities/user data in different languages. The crate is named after the Portuguese word for 'person'."
+repository = "https://github.com/joao-conde/pessoa"
+license = "MIT"
+keywords = ["testing", "fake", "identity", "user"]
+categories = ["command-line-utilities", "development-tools::testing"]
 
 [dependencies]
 fake_rs = { package = "fake", version = "4.0", default-features = false }
