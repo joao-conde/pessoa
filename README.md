@@ -1,6 +1,8 @@
 # Pessoa
 
-Creates an identity. The crate is named after the Portuguese word for "person."
+Generates fake user profile data, ideal for testing purposes or for signing-up on questionable websites.
+
+Named after the Portuguese word for "person."
 
 ## Usage
 
