@@ -1,0 +1,15 @@
+name: Publish CLI workflow
+on:
+  push:
+    tags: '*'
+    paths: "pessoa-cli"
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: cargo publish
+        working-directory: pessoa-cli
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}

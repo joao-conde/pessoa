@@ -1,5 +1,7 @@
-name: CLI Binary Workflow
-on: [push]
+name: Test CLI Workflow
+on: 
+  push:
+    paths: "pessoa-cli"
 jobs:
   test:
     runs-on: ubuntu-latest

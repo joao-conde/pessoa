@@ -1,5 +1,7 @@
-name: Lib Workflow
-on: [push]
+name: Test Lib Workflow
+on: 
+  push:
+    paths: "pessoa"
 jobs:
   test:
     runs-on: ubuntu-latest
