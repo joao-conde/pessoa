@@ -14,6 +14,31 @@ pub struct Identity {
     pub credit_card: String,
 }
 
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+pub struct Address {
+    pub country: String,
+    pub country_code: String,
+    pub state: Option<String>,
+    pub state_code: Option<String>,
+    pub city: String,
+    pub street: String,
+    pub postal_code: String,
+    pub house_number: Option<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+pub struct Job {
+    pub company: String,
+    pub industry: String,
+    pub role: String,
+}
+
+impl Default for Identity {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Identity {
     const PASSWORD_LENGTH: usize = 25;
 
@@ -68,29 +93,4 @@ impl Identity {
             credit_card,
         }
     }
-}
-
-impl Default for Identity {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
-pub struct Address {
-    pub country: String,
-    pub country_code: String,
-    pub state: Option<String>,
-    pub state_code: Option<String>,
-    pub city: String,
-    pub street: String,
-    pub postal_code: String,
-    pub house_number: Option<String>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
-pub struct Job {
-    pub company: String,
-    pub industry: String,
-    pub role: String,
 }
