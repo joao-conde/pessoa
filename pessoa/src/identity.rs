@@ -17,9 +17,7 @@ pub struct Identity {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct Address {
     pub country: String,
-    pub country_code: String,
     pub state: Option<String>,
-    pub state_code: Option<String>,
     pub city: String,
     pub street: String,
     pub postal_code: String,
@@ -50,18 +48,14 @@ impl Identity {
         let first_name = fake!(FirstName, locale);
         let last_name = fake!(LastName, locale);
         let country = fake!(CountryName, locale);
-        let country_code = fake!(CountryCode, locale);
         let state = fake!(StateName, locale);
-        let state_code = fake!(StateAbbr, locale);
         let city = fake!(CityName, locale);
         let street = fake!(StreetName, locale);
         let zip_code = fake!(ZipCode, locale);
         let house_number = fake!(BuildingNumber, locale);
         let address = Address {
             country,
-            country_code,
             state,
-            state_code,
             city,
             street,
             postal_code: zip_code,
