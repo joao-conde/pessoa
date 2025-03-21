@@ -116,7 +116,6 @@ name = "pessoa"
 version = "0.1.0"
 dependencies = [
  "fake",
- "rand",
  "serde",
  "strum",
 ]
