@@ -21,5 +21,5 @@ clap = { version = "4.4", default-features = false, features = [
     "std",
     "suggestions",
 ] }
-pessoa = { path = "../pessoa" }
+pessoa = { version = "0.1", default-features = false }
 serde_json = { version = "1.0", default-features = false, features = ["std"] }
