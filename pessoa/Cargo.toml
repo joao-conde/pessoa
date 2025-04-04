@@ -10,12 +10,12 @@ keywords = ["testing", "fake", "identity", "user"]
 categories = ["command-line-utilities", "development-tools::testing"]
 
 [dependencies]
-fake_rs = { package = "fake", version = "4.0", default-features = false }
+fake_rs = { package = "fake", version = "4.2", default-features = false }
 serde = { version = "1.0", default-features = false, features = [
     "std",
     "derive",
 ] }
-strum = { version = "0.27.1", default-features = false, features = [
+strum = { version = "0.27", default-features = false, features = [
     "derive",
     "std",
     "strum_macros",
