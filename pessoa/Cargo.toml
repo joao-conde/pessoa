@@ -1,6 +1,6 @@
 [package]
 name = "pessoa"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 authors = ["João Conde <joaodiasconde@gmail.com>"]
 description = "Library for generating fake identities/user data in different languages. The crate is named after the Portuguese word for 'person'."
@@ -10,7 +10,7 @@ keywords = ["testing", "fake", "identity", "user"]
 categories = ["command-line-utilities", "development-tools::testing"]
 
 [dependencies]
-fake_rs = { package = "fake", version = "4.2", default-features = false }
+fake_rs = { package = "fake", version = "4.3", default-features = false }
 serde = { version = "1.0", default-features = false, features = [
     "std",
     "derive",
