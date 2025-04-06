@@ -1,8 +1,6 @@
 # Pessoa
 
-Generates fake user profile data, ideal for testing purposes or for signing-up on questionable websites.
-
-Named after the Portuguese word for "person."
+Generates fake user profile data, ideal for testing or signing up on sketchy websites. Named after Portuguese poet Fernando Pessoa, known for his many heteronyms — unique and fictional identities.
 
 ## Usage
 
