@@ -1,7 +1,7 @@
 name: Publish CLI workflow
 on:
   push:
-    tags: 'pessoa-cli-*'
+    tags: "pessoa-cli-\\d+.\\d+.\\d+"
     paths: "pessoa-cli"
 jobs:
   publish:

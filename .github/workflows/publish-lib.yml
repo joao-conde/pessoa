@@ -1,7 +1,7 @@
 name: Publish Lib workflow
 on:
   push:
-    tags: 'pessoa-*'
+    tags: "pessoa-\\d+.\\d+.\\d+"
     paths: "pessoa"
 jobs:
   publish:
